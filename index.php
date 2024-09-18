@@ -1,11 +1,12 @@
 <?php
 require_once "required/session.php";
 require_once "required/sql.php";
-const PAGE_TITLE = "Fitness Tracking System";
+const PAGE_TITLE = "Dashboard - Fitness Tracking System";
+require_once "required/validate.php";
 include_once "included/head.php";
 ?>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <?php
   include_once "included/sidebar.php";
@@ -22,9 +23,9 @@ include_once "included/head.php";
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Steps<br>Taken Today</p>
                     <h5 class="font-weight-bolder">
-                      $53,000
+                      10,000
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -47,7 +48,7 @@ include_once "included/head.php";
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Calories<br>Burned</p>
                     <h5 class="font-weight-bolder">
                       2,300
                     </h5>
@@ -72,7 +73,7 @@ include_once "included/head.php";
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Distance<br>Covered</p>
                     <h5 class="font-weight-bolder">
                       +3,462
                     </h5>

@@ -2,7 +2,7 @@
 require_once "required/session.php";
 require_once "required/sql.php";
 const PAGE_TITLE = "Fitness Tracking System";
-require_once "func/sign-up.php";
+require_once "func/register.php";
 include_once "included/head.php";
 ?>
 
@@ -26,7 +26,7 @@ include_once "included/head.php";
         </ul>
         <ul class="navbar-nav d-lg-block d-none">
           <li class="nav-item">
-            <a href="sign-in" class="btn btn-sm mb-0 me-1 bg-gradient-light">Login</a>
+            <a href="login" class="btn btn-sm mb-0 me-1 bg-gradient-light">Login</a>
           </li>
         </ul>
       </div>
@@ -54,7 +54,7 @@ include_once "included/head.php";
               <h5>Sign Up</h5>
             </div>
             <div class="card-body">
-              <form role="form" action="sign-up" method="post">
+              <form role="form" action="" method="post">
                 <div class="mb-3">
                   <input type="text" class="form-control" placeholder="Name" name='name' aria-label="Name">
                 </div>
@@ -70,7 +70,7 @@ include_once "included/head.php";
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                 </div>
-                <p class="text-sm mt-3 mb-0">Already have an account? <a href="sign-in" class="text-dark font-weight-bolder">Sign in</a></p>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a href="login" class="text-dark font-weight-bolder">Sign in</a></p>
               </form>
             </div>
           </div>
