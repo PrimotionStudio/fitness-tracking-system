@@ -20,7 +20,7 @@ include_once "included/head.php";
     <div class="container-fluid py-4">
       <div class="row">
 
-        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="col-xl-5 col-lg-5 col-md-7 mx-auto">
           <div class="card z-index-0">
             <div class="card-header text-center pt-4 pb-0">
               <h5>Edit Profile Information</h5>
@@ -40,6 +40,9 @@ include_once "included/head.php";
                   <input type="number" class="form-control" placeholder="Height (cm)" name="height" value="<?= $get_user["height"] ?>">
                 </div>
                 <label for="">Change passwords here </label>
+                <div class="mb-3">
+                  <input type="password" class="form-control" placeholder="Current Password" name='current_password'>
+                </div>
                 <div class="mb-3">
                   <input type="password" class="form-control" placeholder="Password" name='password'>
                 </div>
