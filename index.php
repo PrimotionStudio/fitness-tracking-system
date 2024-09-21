@@ -16,6 +16,7 @@ include_once "included/head.php";
     include_once "included/navbar.php";
     ?>
     <div class="container-fluid py-4">
+      <!-- Top Statistics -->
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -23,9 +24,17 @@ include_once "included/head.php";
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Steps<br>Taken Today</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Calories<br>Burned in Total</p>
                     <h5 class="font-weight-bolder">
-                      10,000
+                      <?php
+                      $select_activity_metrics = "SELECT * FROM activity_metrics WHERE user_id='$user_id'";
+                      $query_activity_metrics = mysqli_query($con, $select_activity_metrics);
+                      $total_calories_burned = 0;
+                      while ($get_activity_metrics = mysqli_fetch_assoc($query_activity_metrics)) {
+                        $total_calories_burned += $get_activity_metrics["calories_burned"];
+                      }
+                      echo number_format($total_calories_burned, 2);
+                      ?>
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -114,6 +123,13 @@ include_once "included/head.php";
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="progress" style='height:20px'>
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width:40%; height:20px">40%</div>
           </div>
         </div>
       </div>
