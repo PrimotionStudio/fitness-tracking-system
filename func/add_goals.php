@@ -5,10 +5,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $end_date = $_POST["goalEnd"];
 
     // Only one goals can exist at a point
-    $select_goals = "SELECT * FROM goals WHERE user_id='$user_id' && status!='In Progress'";
+    $select_goals = "SELECT * FROM goals WHERE user_id='$user_id' && status='In Progress'";
     $query_goals = mysqli_query($con, $select_goals);
     if (mysqli_num_rows($query_goals) > 0) {
-        $_SESSION["alert"] = "You already have a goal in progress. Complete it and try again";
+        $_SESSION["alert"] = "You already have a goal In Progress. Complete it and try again";
         header("location: goals");
         exit;
     }

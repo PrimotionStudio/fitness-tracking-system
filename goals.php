@@ -21,6 +21,137 @@ include_once "included/head.php";
             <div class="row">
                 <div class="col-md-7 col-sm-12">
 
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h4 class="font-weight-bolder">Logged Activity Metrics</h4>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table
+                                    class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Status
+                                            </th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Goal Type
+                                            </th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Target Value
+                                            </th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Current Progress
+                                            </th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Start Date
+                                            </th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                End Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $select_goals = "SELECT * FROM goals WHERE user_id='$user_id'";
+                                        $query_goals = mysqli_query($con, $select_goals);
+                                        while ($get_goals = mysqli_fetch_assoc($query_goals)) :
+                                        ?>
+                                            <tr>
+
+                                                <td
+                                                    class="align-middle text-center text-sm">
+
+                                                    <?php
+                                                    if ($get_goals["status"] == 'Completed') :
+                                                    ?>
+                                                        <span
+                                                            class="badge badge-sm bg-gradient-success">Completed</span>
+                                                    <?php
+                                                    elseif ($get_goals["status"] == 'In Progress') :
+                                                    ?>
+                                                        <span
+                                                            class="badge badge-sm bg-gradient-warning">In Progress</span>
+                                                    <?php
+                                                    elseif ($get_goals["status"] == 'Failed') :
+                                                    ?>
+                                                        <span
+                                                            class="badge badge-sm bg-gradient-danger">Failed</span>
+                                                    <?php
+                                                    else :
+                                                    ?>
+                                                        <span
+                                                            class="badge badge-sm bg-gradient-gray">Undefined</span>
+                                                    <?php
+                                                    endif;
+                                                    ?>
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold"><?= $get_goals["goal_type"] ?></span>
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <abbr
+                                                        class="text-sm font-weight-bold mb-0"
+                                                        title="<?php
+                                                                switch ($get_goals['goal_type']) {
+                                                                    case 'Weight Loss':
+                                                                        echo "To loose " . number_format($get_goals['target_value'], 2) . "kg in about " . approximateTimeDifference(date('Y-m-d', strtotime($get_goals['start_date'])), date('Y-m-d', strtotime($get_goals["end_date"])));
+                                                                        $unit = 'kg';
+                                                                        break;
+                                                                    case 'Workout':
+                                                                        echo "To workout " . number_format($get_goals['target_value'], 2) . " time(s) within " . approximateTimeDifference(date('Y-m-d', strtotime($get_goals['start_date'])), date('Y-m-d', strtotime($get_goals["end_date"])));
+                                                                        $unit = 'time(s)';
+                                                                        break;
+                                                                    case 'Distance':
+                                                                        echo "To walk/run over " . number_format($get_goals['target_value'], 2) . "km in about " . approximateTimeDifference(date('Y-m-d', strtotime($get_goals['start_date'])), date('Y-m-d', strtotime($get_goals["end_date"])));
+                                                                        $unit = 'time(s)';
+                                                                        $unit = 'km';
+                                                                        break;
+                                                                    case 'Calories Burned':
+                                                                        echo "To burn " . number_format($get_goals['target_value'], 2) . "kcal calories within " . approximateTimeDifference(date('Y-m-d', strtotime($get_goals['start_date'])), date('Y-m-d', strtotime($get_goals["end_date"])));
+                                                                        $unit = 'kcal';
+                                                                        break;
+                                                                    default:
+                                                                        $unit = '';
+                                                                        break;
+                                                                }
+                                                                ?>">
+                                                        <?= ucfirst(number_format($get_goals['target_value'])) . " " . $unit ?>
+                                                    </abbr>
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <span
+                                                        class="text-secondary text-sm font-weight-bold"><?= $get_goals["current_value"] ?></span>
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <span
+                                                        class="text-secondary text-sm font-weight-bold"><?= date("d/m/y", strtotime($get_goals["start_date"])) ?></span>
+                                                </td>
+                                                <td
+                                                    class="align-middle text-end">
+                                                    <span
+                                                        class="text-secondary text-sm font-weight-bold"><?= date("d/m/y", strtotime($get_goals["end_date"])) ?></span>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-5 col-sm-12">
                     <div class="card shadow">

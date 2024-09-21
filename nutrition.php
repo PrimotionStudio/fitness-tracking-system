@@ -23,7 +23,7 @@ include_once "included/head.php";
                 <div class="col-md-8 col-sm-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h4 class="font-weight-bolder">Logged Activities</h4>
+                            <h4 class="font-weight-bolder">Logged Nutrition</h4>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -37,54 +37,63 @@ include_once "included/head.php";
                                             </th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Activity
+                                                Meal Name
                                             </th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Distance/Extent
+                                                Calories
                                             </th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Duration
+                                                Protein
                                             </th>
                                             <th
-                                                class="text-center text-uppercase text-danger text-xxs font-weight-bolder opacity-7">
-                                                Calories Burned
+                                                class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">
+                                                Carborhydrate
+                                            </th>
+                                            <th
+                                                class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">
+                                                Fats
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td>
-                                                <p
-                                                    class="text-xs font-weight-bold mb-0">
-                                                    Manager
-                                                </p>
-                                            </td>
-                                            <td
-                                                class="align-middle text-center text-sm">
-                                                <span
-                                                    class="badge badge-sm bg-gradient-success">Online</span>
-                                            </td>
-                                            <td
-                                                class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a
-                                                    href="javascript:;"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip"
-                                                    data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        $select_nutrition_logs = "SELECT * FROM nutrition_logs WHERE user_id='$user_id'";
+                                        $query_nutrition_logs = mysqli_query($con, $select_nutrition_logs);
+                                        while ($get_nutrition_logs = mysqli_fetch_assoc($query_nutrition_logs)) :
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold"><?= date('d/m/Y - h:i A', strtotime($get_nutrition_logs["datetime"])) ?></span>
+                                                </td>
+                                                <td>
+                                                    <p
+                                                        class="text-xs text-center font-weight-bold mb-0">
+                                                        <?= ucfirst($get_nutrition_logs["food_name"]) ?>
+                                                    </p>
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center text-sm">
+                                                    <?= $get_nutrition_logs["calories"] ?> kcal
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <?= $get_nutrition_logs["protein"] ?> g
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <?= $get_nutrition_logs["carbohydrate"] ?> g
+                                                </td>
+                                                <td
+                                                    class="align-middle text-center">
+                                                    <?= $get_nutrition_logs["fats"] ?> g
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        endwhile;
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -95,30 +104,35 @@ include_once "included/head.php";
 
                     <div class="card">
                         <div class="card-header pb-0">
-                            <h4 class="font-weight-bolder">Log Activity</h4>
+                            <h4 class="font-weight-bolder">Log Nutrition</h4>
                         </div>
                         <div class="card-body">
                             <form role="form" action='' method='post'>
                                 <div class="mb-3">
-                                    <select name="workout" class="form-control form-control-lg">
-                                        <option value="walking">Walking</option>
-                                        <option value="running">Running</option>
-                                    </select>
+                                    <input type="text" name='food_name' class="form-control form-control-lg" placeholder='Name of Meal'>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" name="steps" class='form-control form-control-lg' placeholder='Number of steps taken'>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="number" name="calories" class='form-control form-control-lg' placeholder='Calories (kcal)'>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" name="protein" class='form-control form-control-lg' placeholder='Protein (g)'>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" name='distance' class="form-control form-control-lg" placeholder="Distance (km)">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="number" name="duration" class="form-control form-control-lg" placeholder="Duration (hours)">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="number" name="heartrate" class="form-control form-control-lg" placeholder="Heart-Rate (bps)">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="number" name="carbohydrate" class='form-control form-control-lg' placeholder='Carbohydrate (g)'>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" name="fats" class='form-control form-control-lg' placeholder='Fats'>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                                    <button type="Submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Log Nutrition</button>
                                 </div>
                             </form>
                         </div>
