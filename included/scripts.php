@@ -19,4 +19,5 @@
 <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 <?php
 include_once "included/alert.php";
+include_once "included/advice_modal.php";
 ?>
