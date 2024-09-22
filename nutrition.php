@@ -109,25 +109,25 @@ include_once "included/head.php";
                         <div class="card-body">
                             <form role="form" action='' method='post'>
                                 <div class="mb-3">
-                                    <input type="text" name='food_name' class="form-control form-control-lg" placeholder='Name of Meal'>
+                                    <input type="text" name='food_name' class="form-control form-control-lg" placeholder='Name of Meal' required>
                                 </div>
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="number" name="calories" class='form-control form-control-lg' placeholder='Calories (kcal)'>
+                                            <input type="number" step="any" name="calories" class='form-control form-control-lg' placeholder='Calories (kcal)' required>
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" name="protein" class='form-control form-control-lg' placeholder='Protein (g)'>
+                                            <input type="number" step="any" name="protein" class='form-control form-control-lg' placeholder='Protein (g)' required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="number" name="carbohydrate" class='form-control form-control-lg' placeholder='Carbohydrate (g)'>
+                                            <input type="number" step="any" name="carbohydrate" class='form-control form-control-lg' placeholder='Carbohydrate (g)' required>
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" name="fats" class='form-control form-control-lg' placeholder='Fats'>
+                                            <input type="number" step="any" name="fats" class='form-control form-control-lg' placeholder='Fats' required>
                                         </div>
                                     </div>
                                 </div>

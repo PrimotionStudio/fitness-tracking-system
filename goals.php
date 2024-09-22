@@ -4,7 +4,7 @@ require_once "required/sql.php";
 const PAGE_TITLE = "Goals - Fitness Tracking System";
 require_once "required/validate.php";
 
-require_once "func/add_goals.php";
+require_once "func/goals.php";
 include_once "included/head.php";
 ?>
 
@@ -45,10 +45,6 @@ include_once "included/head.php";
                                             </th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Current Progress
-                                            </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Start Date
                                             </th>
                                             <th
@@ -61,7 +57,9 @@ include_once "included/head.php";
                                         <?php
                                         $select_goals = "SELECT * FROM goals WHERE user_id='$user_id'";
                                         $query_goals = mysqli_query($con, $select_goals);
+                                        $goal_id = 0;
                                         while ($get_goals = mysqli_fetch_assoc($query_goals)) :
+                                            $goal_id = $get_goals["id"];
                                         ?>
                                             <tr>
 
@@ -131,15 +129,10 @@ include_once "included/head.php";
                                                 <td
                                                     class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-sm font-weight-bold"><?= $get_goals["current_value"] ?></span>
-                                                </td>
-                                                <td
-                                                    class="align-middle text-center">
-                                                    <span
                                                         class="text-secondary text-sm font-weight-bold"><?= date("d/m/y", strtotime($get_goals["start_date"])) ?></span>
                                                 </td>
                                                 <td
-                                                    class="align-middle text-end">
+                                                    class="align-middle text-center">
                                                     <span
                                                         class="text-secondary text-sm font-weight-bold"><?= date("d/m/y", strtotime($get_goals["end_date"])) ?></span>
                                                 </td>
@@ -197,11 +190,10 @@ include_once "included/head.php";
                             <form action="" method="post" class="tab-pane fade" id="update-goal" role="tabpanel" aria-labelledby="update-goal-tab">
 
                                 <div class="form-group">
-                                    <label for="targetValue">Current Value (?/)</label>
-                                    <label><small>How close have you come to meeting your target value</small></label>
-                                    <input type="number" name='currentValue' class="form-control">
+                                    <label>Do you honestly think you've achieved your Goal?</label>
+                                    <input type="hidden" name="goal_id" value="<?= $goal_id ?>">
+                                    <button type="submit" class="btn btn-primary">Achieved Goal</button>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update Goal</button>
                             </form>
                         </div>
                     </div>

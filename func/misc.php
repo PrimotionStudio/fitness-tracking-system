@@ -20,3 +20,15 @@ function approximateTimeDifference($date1, $date2)
         return $diff->d == 1 ? "1 day" : $diff->d . " days";
     }
 }
+
+function truncateString($string, $limit = 40)
+{
+    // Check if the string length is greater than the limit
+    if (strlen($string) > $limit) {
+        // Take the first 20 characters and append "..."
+        return substr($string, 0, $limit) . "...";
+    } else {
+        // Return the original string if it's shorter than the limit
+        return $string;
+    }
+}
