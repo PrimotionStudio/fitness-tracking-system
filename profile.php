@@ -34,10 +34,12 @@ include_once "included/head.php";
                   <input type="email" class="form-control" placeholder="Email" name='email' value="<?= $get_user["email"] ?>">
                 </div>
                 <div class="mb-3">
+                  <label>Weight (kg)</label>
                   <input type="number" class="form-control" placeholder="Weight (kg)" name="weight" value="<?= $get_user["weight"] ?>">
                 </div>
                 <div class="mb-3">
-                  <input type="number" class="form-control" placeholder="Height (cm)" name="height" value="<?= $get_user["height"] ?>">
+                  <label>Height (m)</label>
+                  <input type="number" class="form-control" placeholder="Height (m)" name="height" value="<?= $get_user["height"] ?>">
                 </div>
                 <label for="">Change passwords here </label>
                 <div class="mb-3">

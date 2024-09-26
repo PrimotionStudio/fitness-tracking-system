@@ -30,6 +30,36 @@
                                     $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
                                     $file_name = end($file_path);
                                     $route = explode(".", $file_name)[0];
+                                    if ($route === 'accelerometer') {
+                                        echo 'active';
+                                    }
+                                    ?>" href="accelerometer">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-compass-04 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Accelerometer</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php
+                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
+                                    $file_name = end($file_path);
+                                    $route = explode(".", $file_name)[0];
+                                    if ($route === 'bmi-calculator') {
+                                        echo 'active';
+                                    }
+                                    ?>" href="bmi-calculator">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-user-run text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">BMI Calculator</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php
+                                    $file_path = explode("/", $_SERVER["SCRIPT_NAME"]);
+                                    $file_name = end($file_path);
+                                    $route = explode(".", $file_name)[0];
                                     if ($route === 'goals') {
                                         echo 'active';
                                     }

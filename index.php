@@ -102,7 +102,20 @@ include_once "included/head.php";
                       <?= $total_activity_metrics_logged ?>
                     </h5>
                     <p class="mb-0">
-                      <span class="text-danger text-sm font-weight-bolder">&nbsp;</span>
+                      <?php
+                      $current_date = date("Y-m-d");
+                      $select_steps = "SELECT * FROM steps WHERE date = '$current_date'";
+                      $query_steps = mysqli_query($con, $select_steps);
+                      if (mysqli_num_rows($query_steps) != 0) {
+                        $get_steps = mysqli_fetch_assoc($query_steps);
+                        $total_steps_today = $get_steps["step_count"];
+                        $average_speed = $get_steps["average_speed"];
+                      } else {
+                        $total_steps_today = 0;
+                        $average_speed = 0;
+                      }
+                      ?>
+                      <small class="text-xxs font-weight-bolder"><span class='text-success'><?= $total_steps_today . "</span> steps today at average speed <span class='text-success'>" . $average_speed . "</span> steps per second" ?></small>
                     </p>
                   </div>
                 </div>
